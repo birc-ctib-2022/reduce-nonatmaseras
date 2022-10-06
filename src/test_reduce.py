@@ -30,3 +30,4 @@ def test_accumulate():
         # list for comparison
         assert accumulate(add, x) == list(py_accumulate(x, add))
         assert accumulate(prod, x) == list(py_accumulate(x, prod))
+
