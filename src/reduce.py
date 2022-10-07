@@ -4,7 +4,6 @@ from typing import TypeVar, Callable
 A = TypeVar('A')
 B = TypeVar('B')
 
-
 def reduce(f: Callable[[A], B], x: list[A]) -> B:
     """
     Reduce f over list x.x
@@ -13,7 +12,14 @@ def reduce(f: Callable[[A], B], x: list[A]) -> B:
     6
     """
     assert len(x) >= 2
-    ...  # FIXME
+    #initialize with the first element
+    value = x[0]
+    #skip first position
+    for i in range(1,len(x)):
+        #accumulate result
+        value = f(value, x[i])
+    return value
+    
 
 
 def accumulate(f: Callable[[A], A], x: list[A]) -> list[A]:
@@ -23,4 +29,14 @@ def accumulate(f: Callable[[A], A], x: list[A]) -> list[A]:
     >>> accumulate(lambda x,y: x+y, [1, 2, 3])
     [1, 3, 6]
     """
-    ...  # FIXME
+    assert len(x) >= 2
+    values = [0]*len(x)
+    #skip first position
+    values[0] = x[0]
+    for i in range(1,len(x)):
+        #accumulate result
+        values[i] = f(values[i-1], x[i])
+        
+    return values
+
+
