@@ -15,7 +15,7 @@ def reduce(f: Callable[[A], B], x: list[A]) -> B:
     #initialize with the first element
     value = x[0]
     #skip first position
-    for i in (1,len(x)-1):
+    for i in range(1,len(x)-1):
         #accumulate result
         value = f(value, x[i])
     return value
